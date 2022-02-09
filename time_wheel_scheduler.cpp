@@ -8,9 +8,9 @@ TimeWheelScheduler::TimeWheelScheduler(uint32_t timer_step_ms)
 }
 
 bool TimeWheelScheduler::Start() {
-  if (timer_step_ms_ < 50) {
-    return false;
-  }
+  // if (timer_step_ms_ < 50) {
+  //   return false;
+  // }
   
   if (time_wheels_.empty()) {
     return false;
@@ -23,7 +23,7 @@ bool TimeWheelScheduler::Start() {
 
 void TimeWheelScheduler::Run() {
   while (true) {
-    std::this_thread::sleep_for(std::chrono::milliseconds(timer_step_ms_));
+    std::this_thread::sleep_for(std::chrono::milliseconds(timer_step_ms_ - timer_step_ms_ / 10));
 
     std::lock_guard<std::mutex> lock(mutex_);
     if (stop_) {

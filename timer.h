@@ -5,7 +5,7 @@
 #include <functional>
 #include <memory>
 
-typedef std::function<void()> TimerTask;
+typedef std::function<void(void)> TimerTask;
 
 class Timer {
 public:
